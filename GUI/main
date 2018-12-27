@@ -1,0 +1,94 @@
+import tkinter as tk
+
+root = tk.Tk()
+root.title("Deburr")
+tk.Label(root,
+         text="Automated Deburr",
+         fg = "Dark Blue",
+         font = "Times 24 bold").pack()
+
+# Preset menu
+OPTIONS = [
+    "one",
+    "two",
+    "three"
+]
+
+presetModule = tk.Frame(root)
+presetModule.pack()
+
+pre = tk.Label(presetModule,
+               text = "Presets: ",
+               fg = "Dark Blue",
+               font = "Times 16")
+pre.pack( side = tk.LEFT)
+
+variable = tk.StringVar(presetModule)
+variable.set("Preset")
+
+presetOptionMenu = tk.OptionMenu(presetModule, variable, *OPTIONS)
+presetOptionMenu.pack( side = tk.LEFT)
+
+# Bore size menu
+OPTIONS = [
+    "one",
+    "two",
+    "three"
+]
+
+boreModule = tk.Frame(root)
+boreModule.pack()
+
+bore = tk.Label(boreModule,
+                text = "Bore Size: ",
+                fg = "Dark Blue",
+                font = "Times 16")
+bore.pack(side = tk.LEFT)
+
+var = tk.StringVar(boreModule)
+var.set("Bore Size")
+
+boreOptionMenu = tk.OptionMenu(boreModule, var, *OPTIONS)
+boreOptionMenu.pack(side = tk.LEFT)
+
+# Sleeve Length Menu
+OPTIONS = [
+    "one",
+    "two",
+    "three"
+]
+
+lengthModule = tk.Frame(root)
+lengthModule.pack()
+
+length = tk.Label(lengthModule,
+                text = "Sleeve Length: ",
+                fg = "Dark Blue",
+                font = "Times 16")
+length.pack(side = tk.LEFT)
+
+var = tk.StringVar(lengthModule)
+var.set("Sleeve Length")
+
+lengthOptionMenu = tk.OptionMenu(lengthModule, var, *OPTIONS)
+lengthOptionMenu.pack(side = tk.LEFT)
+
+# Number of Cycles menu
+cycleModule = tk.Frame(root)
+cycleModule.pack()
+
+cycle = tk.Label(cycleModule,
+                 text = "Number of Cycles: ",
+                 fg = "Dark Blue",
+                 font = "Times 16")
+cycle.pack(side = tk.LEFT)
+
+cycleEntry = tk.Entry(cycleModule)
+cycleEntry.pack(side = tk.LEFT)
+
+# start button
+start = tk.Button(root,
+                text = "Start")
+start.pack()
+
+root.mainloop()
