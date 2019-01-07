@@ -1,5 +1,5 @@
 import tkinter as tk
-import functools as ft
+
 
 
 class top(tk.Tk):
