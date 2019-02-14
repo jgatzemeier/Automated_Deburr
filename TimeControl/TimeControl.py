@@ -14,8 +14,8 @@ class TimeControl:
 
     def CalculateTotalTime(self):
         print(config.Config.numCycles) #remove for production
-        TimeControl.totalTime = config.Config.numCycles * 24 * 60
-        TimeControl.totalRunTime = config.Config.numCycles * 8 * 60
+        TimeControl.totalTime = config.Config.numCycles * 24 * 60 # total time for the actuators to rest and run
+        TimeControl.totalRunTime = config.Config.numCycles * 8 * 60 #total run time for the actuators
 
     def Countdown(self):
         type(self).timeRemaining = type(self).totalTime
@@ -23,9 +23,9 @@ class TimeControl:
             print(type(self).timeRemaining)
             type(self).timeRemaining = type(self).timeRemaining - 1
             time.sleep(1)
-        ## do stuff to motor and actuator
+        # do stuff to motor and actuator
 
-    
+
 
 
 

@@ -14,8 +14,16 @@ class ConfigWriter:
         type(self).presetNum = 0
 
     def writeJSON(self):
-        return;
-        #do this
+
+        data = {
+                'boreSize': type(self).boreSize,
+                'sleeveLength': type(self).sleeveLength,
+                'numCycles': type(self).numCycles
+               }
+
+        with open('../current.txt', 'w') as outfile:
+            json.dump(data, outfile, indent=4)
+        
 
     def readJSON(self, filename):
         with open(filename) as json_file:
@@ -32,7 +40,7 @@ class ConfigWriter:
             print('boreSize = ', ConfigWriter.boreSize)  # remove for production
             print('sleeveLength = ', ConfigWriter.sleeveLength)
             print('numCycles = ', ConfigWriter.numCycles)
-            
+
     def readPreset(self):
         if ConfigWriter.presetNum == 0:
             return;
@@ -44,3 +52,4 @@ class ConfigWriter:
 this = ConfigWriter()
 ConfigWriter.presetNum = 1
 this.readPreset()
+this.writeJSON()
