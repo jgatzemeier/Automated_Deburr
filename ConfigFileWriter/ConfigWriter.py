@@ -1,4 +1,5 @@
 import json
+from GUI import main
 
 class ConfigWriter:
 
@@ -23,7 +24,7 @@ class ConfigWriter:
 
         with open('../current.txt', 'w') as outfile:
             json.dump(data, outfile, indent=4)
-        
+
 
     def readJSON(self, filename):
         with open(filename) as json_file:
