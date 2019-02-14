@@ -14,7 +14,7 @@ class Config:
 
 
     def readJSON():
-        with open('current.txt') as json_file:
+        with open('../current.txt') as json_file:
             data = json.load(json_file)
             for key, value in data.items():
                 print(key, value) #remove for production
@@ -25,7 +25,7 @@ class Config:
                 if key == 'numCycles':
                     Config.numCycles = value
 
-            print('boreSize = ', Config.boreSize)
+            print('boreSize = ', Config.boreSize) #remove for production
             print('sleeveLength = ', Config.sleeveLength)
             print('numCycles = ', Config.numCycles)
 
