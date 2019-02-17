@@ -1,5 +1,6 @@
 from Config import config
 import RPi.GPIO as GPIO
+import spidev
 
 class MotorControl:
 
