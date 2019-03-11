@@ -19,7 +19,9 @@ class ActuatorControl:
 
     def calculateStrokeLength(self):
         sleeve = config.Config.sleeveLength
-        #use the clearance and shit from the machine to figure this out
+        plateHeight = 1
+        
+        #use the clearance from the machine to figure this out
 
     def calculateStrokeTime(self):
         type(self).strokeTime = type(self).strokeLength * type(self).speed
