@@ -13,7 +13,7 @@ class Config:
         type(self).numCycles = 0.0
 
 
-    def readJSON():
+    def readJSON(self):
         with open('../current.txt') as json_file:
             data = json.load(json_file)
             for key, value in data.items():
@@ -30,5 +30,5 @@ class Config:
             print('numCycles = ', Config.numCycles)
 
 
-
-Config.readJSON()
+app = Config()
+Config.readJSON(app)
