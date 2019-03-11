@@ -8,9 +8,10 @@ class Config:
 
 
     def __init__(self):
-        type(self).boreSize = 0.0
-        type(self).sleeveLength = 0.0
-        type(self).numCycles = 0.0
+        return
+        #type(self).boreSize = 0.0
+        #type(self).sleeveLength = 0.0
+        #type(self).numCycles = 0.0
 
 
     def readJSON(self):
