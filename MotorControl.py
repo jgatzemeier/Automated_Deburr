@@ -1,4 +1,4 @@
-from Config import config
+import config
 import RPi.GPIO as GPIO
 import spidev
 

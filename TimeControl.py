@@ -1,5 +1,9 @@
-from Config import config
+import config
 import time
+import time
+
+import config
+
 
 class TimeControl:
 

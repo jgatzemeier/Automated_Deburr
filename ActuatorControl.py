@@ -1,6 +1,9 @@
-import RPi.GPIO as GPIO
-from ../Config import config
 import time
+
+import RPi.GPIO as GPIO
+
+import config
+
 
 class ActuatorControl:
 

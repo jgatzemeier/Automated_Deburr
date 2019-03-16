@@ -1,5 +1,5 @@
 {
-    "boreSize" : 2,
-    "sleeveLength" : 3.4,
-    "numCycles" : 4
+    "boreSize": 1,
+    "sleeveLength": 2.4,
+    "numCycles": 5
 }
