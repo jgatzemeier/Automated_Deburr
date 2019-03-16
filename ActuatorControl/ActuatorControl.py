@@ -8,7 +8,7 @@ class ActuatorControl:
     GPIO.setmode(GPIO.BOARD)
     strokeLength = 0
     strokeTime = 0
-    speed = 0
+    speed = 1
 
     GPIO.setup(1, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1
     GPIO.setup(2, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 2
@@ -20,6 +20,7 @@ class ActuatorControl:
     def calculateStrokeLength(self):
         sleeve = config.Config.sleeveLength
         plateHeight = 1
+        strokeLength = 5.4
         
         #use the clearance from the machine to figure this out
 
@@ -37,7 +38,13 @@ class ActuatorControl:
         GPIO.output(2, GPIO.LOW)
         time.sleep(type(self).strokeTime)
 
-    def Acuation(self):
+    def Actuation(self):
         while True:
             type(self).goUp()
             type(self).goDown()
+
+
+act = ActuatorControl()
+act.calculateStrokeLength()
+act.calculateStrokeTime()
+act.Actuation()
