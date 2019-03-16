@@ -13,8 +13,8 @@ class ActuatorControl:
     strokeTime = 0
     speed = 1
 
-    GPIO.setup(3, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1
-    GPIO.setup(5, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 2
+    GPIO.setup(11, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1
+    GPIO.setup(13, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 2
 
     def __init__(self):
         type(self).strokeLength = 0
@@ -32,13 +32,13 @@ class ActuatorControl:
 
 
     def goUp(self):
-        GPIO.output(3, GPIO.HIGH)
-        GPIO.output(5, GPIO.HIGH)
+        GPIO.output(11, GPIO.HIGH)
+        GPIO.output(13, GPIO.HIGH)
         time.sleep(type(self).strokeTime)
 
     def goDown(self):
-        GPIO.output(3, GPIO.LOW)
-        GPIO.output(5, GPIO.LOW)
+        GPIO.output(11, GPIO.LOW)
+        GPIO.output(13, GPIO.LOW)
         time.sleep(type(self).strokeTime)
 
     def Actuation(self):
