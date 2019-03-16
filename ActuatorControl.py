@@ -43,8 +43,8 @@ class ActuatorControl:
 
     def Actuation(self):
         while True:
-            type(self).goUp()
-            type(self).goDown()
+            type(self).goUp(self)
+            type(self).goDown(self)
 
 
 act = ActuatorControl()
