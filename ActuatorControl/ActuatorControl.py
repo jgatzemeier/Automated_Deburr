@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from Config import config
+from ../Config import config
 import time
 
 class ActuatorControl:
