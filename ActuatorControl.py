@@ -1,7 +1,7 @@
 import time
 
 import RPi.GPIO as GPIO
-import board
+
 
 import config
 
