@@ -14,8 +14,8 @@ class ActuatorControl:
     strokeTime = 0
     speed = 1
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(18, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1
-    GPIO.setup(12, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 2
+    GPIO.setup(18, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1 hot
+    GPIO.setup(12, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1 cold
 
     def __init__(self):
         type(self).strokeLength = 0
