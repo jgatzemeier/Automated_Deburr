@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 # Import the MCP4725 module.
-import board
+#import board
 import busio
 
 import adafruit_mcp4725
@@ -12,7 +12,7 @@ import adafruit_mcp4725
 
 class MotorControl:
 
-    GPIO.setmode(GPIO.BOARD)
+    GPIO.setmode(GPIO.BCM)
     rpm = 0
     voltage = 0
 
@@ -24,7 +24,7 @@ class MotorControl:
     # Optionally you can specify a different addres if you override the A0 pin.
     # amp = adafruit_max9744.MAX9744(i2c, address=0x63)
 
-    GPIO.setup(1, GPIO.OUT, initial=GPIO.LOW) #pin for SPDT switch
+    GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW) #pin for SPDT switch
 
 
     def __init__(self):
@@ -50,12 +50,18 @@ class MotorControl:
         return
 
     def forward(self):
-        GPIO.output(1, GPIO.HIGH)
+        GPIO.output(17, GPIO.HIGH)
         type(self).voltageSet(self)
 
     def reverse(self):
-        GPIO.output(1, GPIO.LOW)
+        GPIO.output(17, GPIO.LOW)
         type(self).voltageSet(self)
 
+
+motor = MotorControl()
+motor.forward()
+time.sleep(10)
+motor.reverse()
+time.sleep(10)
 
 
