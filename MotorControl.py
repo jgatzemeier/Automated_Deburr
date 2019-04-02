@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 # Import the MCP4725 module.
-#import board
+import board
 import busio
 
 import adafruit_mcp4725
