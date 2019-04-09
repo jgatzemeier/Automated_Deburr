@@ -32,14 +32,14 @@ class MotorControl:
         type(self).voltage = 0
 
     def voltageSet(self):
-        while True:
-            print('Going up 0-3.3V...')
-            for i in range(2048):
-                type(self).dac.raw_value = i
-            # Go back down the 12-bit raw range.
-            print('Going down 3.3-0V...')
-            for i in range(2048, -1, -1):
-                type(self).dac.raw_value = i
+        print('Going up 0-3.3V...')
+        for i in range(2048):
+            type(self).dac.raw_value = i
+        # Go back down the 12-bit raw range.
+        print('Going down 3.3-0V...')
+        for i in range(2048, -1, -1):
+            type(self).dac.raw_value = i
+
 
     def calculateRPM(self):
         bore = config.Config.boreSize
@@ -60,8 +60,8 @@ class MotorControl:
 
 motor = MotorControl()
 motor.forward()
-time.sleep(10)
+time.sleep(1)
 motor.reverse()
-time.sleep(10)
+time.sleep(1)
 
 
