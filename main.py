@@ -165,8 +165,8 @@ class Confirmation(tk.Frame):
 
 
 class TimeRemaining(tk.Frame):
-    def __init__(self):
-        tk.Tk.__init__(self)
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
         self.label = tk.Label(self, text="", width=10)
         self.label.pack()
         self.remaining = 0
