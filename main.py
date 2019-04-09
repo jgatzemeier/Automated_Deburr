@@ -6,6 +6,7 @@ PRESET = None
 BORE_SIZE = None
 SLEEVE_LENGTH = None
 
+
 class top(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -164,17 +165,36 @@ class Confirmation(tk.Frame):
 
 
 class TimeRemaining(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page Two!!!")
-        label.pack(pady=10, padx=10)
+    def __init__(self):
+        tk.Tk.__init__(self)
+        self.label = tk.Label(self, text="", width=10)
+        self.label.pack()
+        self.remaining = 0
+        self.countdown(75)	# Pass in a time for the countdown function.
 
-        button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(ConfigPage))
-        button1.pack()
+    def countdown(self, remaining = None):
+        if remaining is not None:
+            self.remaining = remaining
 
-        button2 = tk.Button(self, text="Page One",
-                            command=lambda: controller.show_frame(Confirmation))
+        if self.remaining <= 0:
+            self.label.configure(text="Timer is up!")
+        else:
+            self.label.configure(text="%d" % self.remaining)
+            self.remaining = self.remaining - 1
+            self.after(1000, self.countdown)
+
+    # Id you wish for this format: mm:ss (i.e. 12:45), utilize this function
+    # below as a helper function for countdown()...
+
+    '''
+    def formatTime(x):
+    minutes = int(x / 60)
+    seconds_rem = int(x % 60)
+    if (seconds_rem < 10):
+        return(str(minutes) + ":0" + str(seconds_rem))
+    else:
+        return(str(minutes) + ":" + str(seconds_rem))
+    '''
 
 
 app = top()
