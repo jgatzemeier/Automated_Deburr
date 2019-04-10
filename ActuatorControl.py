@@ -11,7 +11,7 @@ class ActuatorControl:
 
 
     strokeLength = 0
-    strokeTime = 15
+    strokeTime = 0
     speed = 1
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1 hot
@@ -19,7 +19,7 @@ class ActuatorControl:
 
     def __init__(self):
         type(self).strokeLength = 0
-        type(self).strokeTime = 0
+        type(self).strokeTime = 5
 
     def calculateStrokeLength(self):
         sleeve = config.Config.sleeveLength
@@ -35,14 +35,14 @@ class ActuatorControl:
     def goUp(self):
         GPIO.output(23, GPIO.HIGH)
         GPIO.output(24, GPIO.LOW)
-        time.sleep(10)#type(self).strokeTime)
+        time.sleep(type(self).strokeTime)
         GPIO.output(23, GPIO.LOW)
         GPIO.output(24, GPIO.LOW)
 
     def goDown(self):
         GPIO.output(23, GPIO.LOW)
         GPIO.output(24, GPIO.HIGH)
-        time.sleep(10)#type(self).strokeTime)
+        time.sleep(type(self).strokeTime)
         GPIO.output(23, GPIO.LOW)
         GPIO.output(24, GPIO.LOW)
 
