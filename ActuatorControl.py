@@ -43,8 +43,9 @@ class ActuatorControl:
         time.sleep(type(self).strokeTime)
 
     def Actuation(self):
-        type(self).goUp(self)
-        type(self).goDown(self)
+        while True:
+            type(self).goUp(self)
+            type(self).goDown(self)
 
 
 act = ActuatorControl()
