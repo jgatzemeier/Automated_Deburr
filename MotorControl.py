@@ -24,13 +24,14 @@ class MotorControl:
         type(self).voltage = 0
 
     def voltageSet(self):
-        print('Going up 0-3.3V...')
-        for i in range(2048):
-            type(self).dac.set_voltage = i
-        # Go back down the 12-bit raw range.
-        print('Going down 3.3-0V...')
-        for i in range(2048, -1, -1):
-            type(self).dac.set_voltage = i
+        while True:
+            print('Going up 0-3.3V...')
+            for i in range(2048):
+                type(self).dac.set_voltage = i
+            # Go back down the 12-bit raw range.
+            print('Going down 3.3-0V...')
+            for i in range(2048, -1, -1):
+                type(self).dac.set_voltage = i
 
 
     def calculateRPM(self):
