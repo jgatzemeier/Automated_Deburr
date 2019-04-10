@@ -29,7 +29,8 @@ class ActuatorControl:
         #use the clearance from the machine to figure this out
 
     def calculateStrokeTime(self):
-        type(self).strokeTime = type(self).strokeLength * type(self).speed
+        #type(self).strokeTime = type(self).strokeLength * type(self).speed
+        return
 
 
     def goUp(self):
