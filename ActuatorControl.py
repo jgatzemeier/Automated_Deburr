@@ -11,7 +11,7 @@ class ActuatorControl:
 
 
     strokeLength = 0
-    strokeTime = 0
+    strokeTime = 5
     speed = 1
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)  #pin for relay 1 hot
