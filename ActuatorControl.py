@@ -36,11 +36,15 @@ class ActuatorControl:
         GPIO.output(23, GPIO.HIGH)
         GPIO.output(24, GPIO.LOW)
         time.sleep(type(self).strokeTime)
+        GPIO.output(23, GPIO.LOW)
+        GPIO.output(24, GPIO.LOW)
 
     def goDown(self):
         GPIO.output(23, GPIO.LOW)
         GPIO.output(24, GPIO.HIGH)
         time.sleep(type(self).strokeTime)
+        GPIO.output(23, GPIO.LOW)
+        GPIO.output(24, GPIO.LOW)
 
     def Actuation(self):
         while True:
