@@ -27,9 +27,9 @@ class MotorControl:
         while True:
             for x in range(0, 4097, 150):
                 print(x)
-                dac.set_voltage(x)
+                type(self).dac.set_voltage(x)
 
-            
+
 
                 time.sleep(2)
 
