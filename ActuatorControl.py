@@ -47,9 +47,10 @@ class ActuatorControl:
         GPIO.output(24, GPIO.LOW)
 
     def Actuation(self):
-        while True:
-            type(self).goUp(self)
-            type(self).goDown(self)
+       while True:
+            #type(self).goUp(self)
+            #type(self).goDown(self)
+        time.sleep(15)
 
 
 act = ActuatorControl()
