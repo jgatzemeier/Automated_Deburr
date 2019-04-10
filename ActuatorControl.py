@@ -11,10 +11,13 @@ class ActuatorControl:
     strokeLength = 0
     strokeTime = 0
     speed = 1
+    '''
+        NOTE: Pin layout can be found at pinout.xyz
+    '''
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)  #pin for actuator 1 hot
-    GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)  #pin for actuator 1 cold
-    GPIO.setup(27, GPIO.OUT, initial=GPIO.LOW)  #pin for actuator 2 hot
+    GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 1 hot
+    GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 1 cold
+    GPIO.setup(27, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 hot
     GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 cold
 
     def __init__(self):
