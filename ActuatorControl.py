@@ -35,14 +35,12 @@ class ActuatorControl:
         #type(self).strokeTime = type(self).strokeLength * type(self).speed
         return
 
-
     def goUp(self):
         GPIO.output(23, GPIO.HIGH)  # actuator 1
         GPIO.output(24, GPIO.LOW)  # actuator 1
         GPIO.output(27, GPIO.HIGH)  # actuator 2
         GPIO.output(22, GPIO.LOW)  # actuator 2
         time.sleep(type(self).strokeTime)
-
 
     def goDown(self):
         GPIO.output(23, GPIO.LOW)  # actuator 1
@@ -51,12 +49,10 @@ class ActuatorControl:
         GPIO.output(22, GPIO.HIGH)  # actuator 2
         time.sleep(type(self).strokeTime)
 
-
     def Actuation(self):
        while True:
             type(self).goUp(self)
             type(self).goDown(self)
-
 
 
 act = ActuatorControl()
