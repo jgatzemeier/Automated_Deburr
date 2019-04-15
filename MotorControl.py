@@ -5,51 +5,40 @@ import time
 import Adafruit_MCP4725 as mcp
 
 
-
 class MotorControl:
 
     GPIO.setmode(GPIO.BCM)
-    rpm = 0
     voltage = 0
 
-    # Initialize MCP4725.
     dac = mcp.MCP4725(address=0x60)
 
-
-    GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW) #pin for SPDT switch
-
+    GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW) # pin for SPDT switch
 
     def __init__(self):
         type(self).rpm = 0
         type(self).voltage = 0
 
     def voltageSet(self):
-        while True:
             for x in range(0, 4097, 150):
                 print(x)
                 type(self).dac.set_voltage(x)
-
-
-
                 time.sleep(2)
+        # type(self).dac.set_voltage(type(self).voltage)
 
-
-
-    def calculateRPM(self):
+    def calculateVoltage(self):
         bore = config.Config.boreSize
         # this will be a list of conditionals of each bore size with the RPM we determine in testing
         print(bore)
 
-    def calculateVoltage(self):
-        return
-
     def forward(self):
         GPIO.output(17, GPIO.HIGH)
-        type(self).voltageSet(self)
+        while True:
+            type(self).voltageSet(self)
 
     def reverse(self):
         GPIO.output(17, GPIO.LOW)
-        type(self).voltageSet(self)
+        while True:
+            type(self).voltageSet(self)
 
 
 motor = MotorControl()
