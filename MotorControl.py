@@ -33,6 +33,7 @@ class MotorControl:
         type(self).voltage = 0
 
     def voltageSet(self):
+        return
             # for x in range(0, 4097, 150):
             #     print(x)
             #     type(self).dac.set_voltage(x)
