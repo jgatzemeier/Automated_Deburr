@@ -10,7 +10,7 @@ class ActuatorControl:
 
     strokeLength = 0
     strokeTime = 0
-    speed = 1
+    speed = .3
     '''
         NOTE: Pin layout can be found at pinout.xyz
     '''
@@ -22,17 +22,33 @@ class ActuatorControl:
 
     def __init__(self):
         type(self).strokeLength = 0
-        type(self).strokeTime = 30
+        type(self).strokeTime = 20
 
     def calculateStrokeLength(self):
         sleeve = config.Config.sleeveLength
         plateHeight = 1
-        strokeLength = 5.4
-        
-        # use the clearance from the machine to figure this out
+        strokeLength = 0
+        if sleeve == 3.875:
+            strokeLength = 0
+        elif sleeve == 4.875:
+            strokeLength = 0
+        elif sleeve = 5.000:
+            strokeLength = 0
+        elif sleeve = 7.000:
+            strokeLength = 0
+        elif sleeve = 9.000:
+            strokeLength = 0
+        elif sleeve = 10.750:
+            strokeLength = 0
+        elif sleeve = 11.750:
+            strokeLength = 0
+        else:
+            strokeLength = 0
+
+        type(self).strokeLength = strokeLength
 
     def calculateStrokeTime(self):
-        # type(self).strokeTime = type(self).strokeLength * type(self).speed
+        type(self).strokeTime = type(self).strokeLength * type(self).speed
         return
 
     def goUp(self):
