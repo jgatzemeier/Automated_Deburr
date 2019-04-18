@@ -32,15 +32,15 @@ class ActuatorControl:
             strokeLength = 0
         elif sleeve == 4.875:
             strokeLength = 0
-        elif sleeve = 5.000:
+        elif sleeve == 5.000:
             strokeLength = 0
-        elif sleeve = 7.000:
+        elif sleeve == 7.000:
             strokeLength = 0
-        elif sleeve = 9.000:
+        elif sleeve == 9.000:
             strokeLength = 0
-        elif sleeve = 10.750:
+        elif sleeve == 10.750:
             strokeLength = 0
-        elif sleeve = 11.750:
+        elif sleeve == 11.750:
             strokeLength = 0
         else:
             strokeLength = 0
