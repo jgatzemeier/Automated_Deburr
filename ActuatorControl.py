@@ -72,6 +72,6 @@ class ActuatorControl:
 
 
 act = ActuatorControl()
-act.calculateStrokeLength()
-act.calculateStrokeTime()
+# act.calculateStrokeLength()
+# act.calculateStrokeTime()
 act.Actuation()
