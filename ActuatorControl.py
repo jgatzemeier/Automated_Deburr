@@ -54,11 +54,10 @@ class ActuatorControl:
         return
 
     def goUp(self):
-
-        GPIO.output(24, GPIO.LOW)  # actuator 1
-        GPIO.output(23, GPIO.HIGH)  # actuator 1
-        GPIO.output(27, GPIO.HIGH)  # actuator 2
         GPIO.output(22, GPIO.LOW)  # actuator 2
+        GPIO.output(27, GPIO.HIGH)  # actuator 2
+        GPIO.output(23, GPIO.HIGH)  # actuator 1
+        GPIO.output(24, GPIO.LOW)  # actuator 1
         time.sleep(type(self).strokeTime + 2)
         # time.sleep(type(self).strokeTime/2)
         # GPIO.output(27, GPIO.LOW)  # actuator 2
