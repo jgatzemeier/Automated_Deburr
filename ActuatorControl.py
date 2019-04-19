@@ -75,15 +75,15 @@ class ActuatorControl:
         GPIO.output(22, GPIO.LOW)  # actuator 2
         time.sleep(.25)
         GPIO.output(22, GPIO.HIGH)  # actuator 2
-        time.sleep((type(self).strokeTime / 4)-.25)
+        # time.sleep((type(self).strokeTime / 4)-.25)
+        # GPIO.output(22, GPIO.LOW)  # actuator 2
+        # time.sleep(.25)
+        # GPIO.output(22, GPIO.HIGH)  # actuator 2
+        time.sleep((type(self).strokeTime / 2) - .25)
         GPIO.output(22, GPIO.LOW)  # actuator 2
         time.sleep(.25)
         GPIO.output(22, GPIO.HIGH)  # actuator 2
-        time.sleep((type(self).strokeTime / 4) - .5)
-        GPIO.output(22, GPIO.LOW)  # actuator 2
-        time.sleep(.25)
-        GPIO.output(22, GPIO.HIGH)  # actuator 2
-        time.sleep((type(self).strokeTime / 4) - .75)
+        time.sleep((type(self).strokeTime / 4) -.5)
 
     def Actuation(self):
        while True:
