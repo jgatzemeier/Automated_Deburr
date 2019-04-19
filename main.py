@@ -1,10 +1,13 @@
 import tkinter as tk
+import ConfigWriter
+
 
 import os
 
 PRESET = None
 BORE_SIZE = None
 SLEEVE_LENGTH = None
+CYCLE_ENTRY = None
 
 
 class top(tk.Tk):
@@ -36,9 +39,13 @@ def startListener(text, controller):
     print(text)
     controller.show_frame(Confirmation)
     print(PRESET.get())
+    ConfigWriter.PRESET = PRESET.get()
     print(BORE_SIZE.get())
+    ConfigWriter.BORE_SIZE = BORE_SIZE.get()
     print(SLEEVE_LENGTH.get())
+    ConfigWriter.SLEEVE_LENGTH = SLEEVE_LENGTH.get()
     print(CYCLE_ENTRY.get())
+    ConfigWriter.NUM_CYCLES = CYCLE_ENTRY.get()
 
 
 class ConfigPage(tk.Frame):
@@ -107,9 +114,14 @@ class ConfigPage(tk.Frame):
         ################################################################
 
         SLEEVE_OPTIONS = [
-            "one",
-            "two",
-            "three"
+            "3-7/8",
+            "4", # rep part
+            "4-7/8",
+            "5",
+            "7",
+            "9",
+            "10-3/4",
+            "11-3/4"
         ]
 
         lengthModule = tk.Frame(self)
@@ -160,7 +172,7 @@ class Confirmation(tk.Frame):
 
 
         confirm = tk.Button(self, text="Confirm",
-                            command=lambda: controller.show_frame(TimeRemaining))
+                            command=lambda: ConfigWriter.ConfigWriteMain())#controller.show_frame(TimeRemaining))
         confirm.pack()
 
 
