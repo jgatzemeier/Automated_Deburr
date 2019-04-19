@@ -22,7 +22,7 @@ class ActuatorControl:
 
     def __init__(self):
         type(self).strokeLength = 0
-        type(self).strokeTime = 20
+        type(self).strokeTime = 25
 
     def calculateStrokeLength(self):
         sleeve = config.Config.sleeveLength
@@ -80,10 +80,10 @@ class ActuatorControl:
         # time.sleep(.25)
         # GPIO.output(22, GPIO.HIGH)  # actuator 2
         time.sleep((type(self).strokeTime / 2) - .25)
-        GPIO.output(22, GPIO.LOW)  # actuator 2
-        time.sleep(.25)
-        GPIO.output(22, GPIO.HIGH)  # actuator 2
-        time.sleep((type(self).strokeTime / 4) -.5)
+        # GPIO.output(22, GPIO.LOW)  # actuator 2
+        # time.sleep(.25)
+        # GPIO.output(22, GPIO.HIGH)  # actuator 2
+        time.sleep((type(self).strokeTime / 4))
 
     def Actuation(self):
        while True:
