@@ -73,6 +73,8 @@ class ActuatorControl:
         GPIO.output(27, GPIO.LOW)  # actuator 2
 
         time.sleep(type(self).strokeTime)
+        type(self).Off(self)
+        time.sleep(2)
         # time.sleep(type(self).strokeTime/4)
         # GPIO.output(22, GPIO.LOW)  # actuator 2
         # time.sleep(.25)
