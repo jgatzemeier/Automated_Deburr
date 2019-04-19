@@ -22,26 +22,26 @@ class ActuatorControl:
 
     def __init__(self):
         type(self).strokeLength = 0
-        type(self).strokeTime = 5
+        type(self).strokeTime = 6
 
     def calculateStrokeLength(self):
         sleeve = config.Config.sleeveLength
         plateHeight = 1
         strokeLength = 0
         if sleeve == 3.875:
-            strokeLength = 0
+            strokeLength = 3.875
         elif sleeve == 4.875:
-            strokeLength = 0
+            strokeLength = 4.875
         elif sleeve == 5.000:
-            strokeLength = 0
+            strokeLength = 5.000
         elif sleeve == 7.000:
-            strokeLength = 0
+            strokeLength = 7.000
         elif sleeve == 9.000:
-            strokeLength = 0
+            strokeLength = 9.000
         elif sleeve == 10.750:
-            strokeLength = 0
+            strokeLength = 10.750
         elif sleeve == 11.750:
-            strokeLength = 0
+            strokeLength = 11.750
         else:
             strokeLength = 0
 
