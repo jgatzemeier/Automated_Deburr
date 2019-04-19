@@ -1,56 +1,61 @@
 import json
-from GUI import main
+import main
+import config
 
-class ConfigWriter:
-
-    boreSize = 0.0
-    sleeveLength = 0.0
-    numCycles = 0
-    presetNum = 0
-
-    def __init__(self):
-        type(self).boreSize = 0.0
-        type(self).sleeveLength = 0.0
-        type(self).numCycles = 0
-        type(self).presetNum = 0
-
-    def writeJSON(self):
-
-        data = {
-                'boreSize': type(self).boreSize,
-                'sleeveLength': type(self).sleeveLength,
-                'numCycles': type(self).numCycles
-               }
-
-        with open('../current.txt', 'w') as outfile:
-            json.dump(data, outfile, indent=4)
+BORE_SIZE = 0.0
+SLEEVE_LENGTH = 0.0
+NUM_CYCLES = 0
+PRESET = ''
 
 
-    def readJSON(self, filename):
-        with open(filename) as json_file:
-            data = json.load(json_file)
-            for key, value in data.items():
-                print(key, value)  # remove for production
-                if key == 'boreSize':
-                    ConfigWriter.boreSize = value
-                if key == 'sleeveLength':
-                    ConfigWriter.sleeveLength = value
-                if key == 'numCycles':
-                    ConfigWriter.numCycles = value
+def writeJSON():
+    print(BORE_SIZE)
+    print(SLEEVE_LENGTH)
+    print(NUM_CYCLES)
 
-            print('boreSize = ', ConfigWriter.boreSize)  # remove for production
-            print('sleeveLength = ', ConfigWriter.sleeveLength)
-            print('numCycles = ', ConfigWriter.numCycles)
+    data = {
+        'boreSize': BORE_SIZE,
+        'sleeveLength': SLEEVE_LENGTH,
+        'numCycles': NUM_CYCLES
+    }
 
-    def readPreset(self):
-        if ConfigWriter.presetNum == 0:
-            return;
-        else:
-            filename = '../Presets/Preset' + str(ConfigWriter.presetNum)
-            ConfigWriter.readJSON(self, filename)
+    with open('../current.json', 'w') as outfile:
+        json.dump(data, outfile, indent=4)
 
 
-this = ConfigWriter()
-ConfigWriter.presetNum = 1
-this.readPreset()
-this.writeJSON()
+def readJSON(filename):
+    with open(filename) as json_file:
+        data = json.load(json_file)
+        for key, value in data.items():
+            print(key, value)  # remove for production
+            if key == 'boreSize':
+                BORE_SIZE = value
+            if key == 'sleeveLength':
+                SLEEVE_LENGTH = value
+            if key == 'numCycles':
+                NUM_CYCLES = value
+
+        print('boreSize = ', BORE_SIZE)  # remove for production
+        print('sleeveLength = ', SLEEVE_LENGTH)
+        print('numCycles = ', NUM_CYCLES)
+
+
+def readPreset():
+    if PRESET == '':
+        return
+    else:
+        filename = '../preset/' + PRESET
+        readJSON(filename)
+
+
+def ConfigWriteMain():
+    readPreset()
+    writeJSON()
+    config.Config.configMain()
+
+
+
+readJSON('current.json')
+app = main.top()
+readPreset()
+
