@@ -22,7 +22,7 @@ class ActuatorControl:
 
     def __init__(self):
         type(self).strokeLength = 0
-        type(self).strokeTime = 25
+        type(self).strokeTime = 5
 
     def calculateStrokeLength(self):
         sleeve = config.Config.sleeveLength
@@ -57,12 +57,12 @@ class ActuatorControl:
         GPIO.output(23, GPIO.HIGH)  # actuator 1
         GPIO.output(27, GPIO.HIGH)  # actuator 2
         GPIO.output(22, GPIO.LOW)  # actuator 2
-        # time.sleep(type(self).strokeTime)
-        time.sleep(type(self).strokeTime/2)
-        GPIO.output(27, GPIO.LOW)  # actuator 2
-        time.sleep(.5)
-        GPIO.output(27, GPIO.HIGH)  # actuator 2
-        time.sleep((type(self).strokeTime / 2)-.5)
+        time.sleep(type(self).strokeTime)
+        # time.sleep(type(self).strokeTime/2)
+        # GPIO.output(27, GPIO.LOW)  # actuator 2
+        # time.sleep(.5)
+        # GPIO.output(27, GPIO.HIGH)  # actuator 2
+        # time.sleep((type(self).strokeTime / 2)-.5)
 
     def goDown(self):
         GPIO.output(23, GPIO.LOW)  # actuator 1
@@ -70,25 +70,31 @@ class ActuatorControl:
         GPIO.output(22, GPIO.HIGH)  # actuator 2
         GPIO.output(27, GPIO.LOW)  # actuator 2
 
-        # time.sleep(type(self).strokeTime)
-        time.sleep(type(self).strokeTime/4)
-        GPIO.output(22, GPIO.LOW)  # actuator 2
-        time.sleep(.25)
-        GPIO.output(22, GPIO.HIGH)  # actuator 2
-        # time.sleep((type(self).strokeTime / 4)-.25)
+        time.sleep(type(self).strokeTime)
+        # time.sleep(type(self).strokeTime/4)
         # GPIO.output(22, GPIO.LOW)  # actuator 2
         # time.sleep(.25)
         # GPIO.output(22, GPIO.HIGH)  # actuator 2
-        time.sleep((type(self).strokeTime / 2) - .25)
-        # GPIO.output(22, GPIO.LOW)  # actuator 2
-        # time.sleep(.25)
-        # GPIO.output(22, GPIO.HIGH)  # actuator 2
-        time.sleep((type(self).strokeTime / 4))
+        # # time.sleep((type(self).strokeTime / 4)-.25)
+        # # GPIO.output(22, GPIO.LOW)  # actuator 2
+        # # time.sleep(.25)
+        # # GPIO.output(22, GPIO.HIGH)  # actuator 2
+        # #time.sleep((type(self).strokeTime / 2) - .25)
+        # # GPIO.output(22, GPIO.LOW)  # actuator 2
+        # # time.sleep(.25)
+        # # GPIO.output(22, GPIO.HIGH)  # actuator 2
+        # time.sleep((type(self).strokeTime / 4))
 
     def Actuation(self):
-       while True:
-            type(self).goUp(self)
+        GPIO.output(24, GPIO.LOW)  # actuator 1
+        GPIO.output(23, GPIO.HIGH)  # actuator 1
+        GPIO.output(27, GPIO.HIGH)  # actuator 2
+        GPIO.output(22, GPIO.LOW)  # actuator 2
+        time.sleep(23)
+        while True:
             type(self).goDown(self)
+            type(self).goUp(self)
+
 
     def Off(self):
         GPIO.output(23, GPIO.LOW)  # actuator 1
