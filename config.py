@@ -15,7 +15,7 @@ class Config:
 
 
     def readJSON(self):
-        with open('current.txt') as json_file:
+        with open('current.json') as json_file:
             data = json.load(json_file)
             for key, value in data.items():
                 print(key, value) #remove for production
