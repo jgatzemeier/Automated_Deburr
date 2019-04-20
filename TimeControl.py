@@ -31,7 +31,7 @@ class TimeControl:
         t = 8 * 60 - type(self).actuator.getFullStroke()
 
         while t > type(self).actuator.getFullStroke():
-            if t < (type(self).actuator.getFullStroke() + type(self).actuator.getStrokeTime(2)):  # Double checks that we will not surpass the duty cycle of the actuator
+            if t < (type(self).actuator.getFullStroke() + type(self).actuator.getStrokeTime()):  # Double checks that we will not surpass the duty cycle of the actuator
                 break
             t = t - (type(self).actuator.getStrokeTime() * 2)
             type(self).actuator.Actuation()
