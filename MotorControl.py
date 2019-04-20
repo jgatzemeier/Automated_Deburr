@@ -11,7 +11,7 @@ class MotorControl:
     GPIO.setmode(GPIO.BCM)
     voltage = 0
 
-    dac = mcp.MCP4725(address=0x60)
+    dac = mcp.MCP4725(address=0x61)
 
 
     # # I2C channel 1 is connected to the GPIO pins
