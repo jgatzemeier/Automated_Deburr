@@ -1,5 +1,5 @@
 import json
-from config import Config
+#from config import Config
 
 
 class ConfigWriter:
@@ -43,6 +43,8 @@ class ConfigWriter:
             print('sleeveLength = ', type(self).sleeveLength)
             print('numCycles = ', type(self).numCycles)
 
+            return [type(self).boreSize, type(self).sleeveLength, type(self).numCycles]
+
 
     def readPreset(self):
         if type(self).preset == "Preset":
@@ -59,23 +61,23 @@ class ConfigWriter:
         else:
             type(self).boreSize = float(boreSize.get())
 
-        if sleeveLength == "Sleeve Length":
+        if sleeveLength.get() == "Sleeve Length":
             type(self).sleeveLength = 0.000
-        elif sleeveLength == "3-7/8":
+        elif sleeveLength.get() == "3-7/8":
             type(self).sleeveLength = 3.875
-        elif sleeveLength == "4":
+        elif sleeveLength.get() == "4":
             type(self).sleeveLength = 4.000
-        elif sleeveLength == "4-7/8":
+        elif sleeveLength.get() == "4-7/8":
             type(self).sleeveLength = 4.875
-        elif sleeveLength == "5":
+        elif sleeveLength.get() == "5":
             type(self).sleeveLength = 5.000
-        elif sleeveLength == "7":
+        elif sleeveLength.get() == "7":
             type(self).sleeveLength = 7.000
-        elif sleeveLength == "9":
+        elif sleeveLength.get() == "9":
             type(self).sleeveLength = 9.000
-        elif sleeveLength == "10-3/4":
+        elif sleeveLength.get() == "10-3/4":
             type(self).sleeveLength = 10.750
-        elif sleeveLength == "11-3/4":
+        elif sleeveLength.get() == "11-3/4":
             type(self).sleeveLength = 11.750
 
         if numCycles.get() == '':
@@ -84,8 +86,8 @@ class ConfigWriter:
             type(self).numCycles = int(numCycles.get())
         type(self).readPreset(self)
         type(self).writeJSON(self)
-        config = Config()
-        config.configMain()
+        # config = Config()
+        # config.configMain()
 
 #
 # yeah = ConfigWriter()
