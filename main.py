@@ -115,7 +115,7 @@ class ConfigPage(tk.Frame):
 
         global BORE_SIZE
         BORE_SIZE = tk.StringVar(boreModule)
-        if items[0] == 0.0:
+        if items[0] == 0.0 or items[0] == 1:
             BORE_SIZE.set("Bore Size")
         else:
             BORE_SIZE.set(items[0])  # The bore size from the last run
