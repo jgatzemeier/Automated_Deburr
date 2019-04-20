@@ -1,5 +1,5 @@
 import tkinter as tk
-import ConfigWriter
+from ConfigWriter import ConfigWriter
 
 
 import os
@@ -9,6 +9,7 @@ BORE_SIZE = None
 SLEEVE_LENGTH = None
 CYCLE_ENTRY = None
 
+TIME_REMAINING_PAGE = None
 
 class top(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -21,12 +22,18 @@ class top(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         # Adds page to application
         self.frames = {}
-        for F in (ConfigPage, Confirmation, TimeRemaining):
+        for F in (ConfigPage, Confirmation):# TimeRemaining):
             frame = F(container, self)
 
             self.frames[F] = frame
 
             frame.grid(row=0, column=0, sticky="nsew")
+        global TIME_REMAINING_PAGE
+        TIME_REMAINING_PAGE = TimeRemaining(container, self)
+        self.frames[TimeRemaining] = TIME_REMAINING_PAGE
+        TIME_REMAINING_PAGE.grid(row=0, column=0, sticky="nsew")
+
+
         # displays page
         self.show_frame(ConfigPage)
 
@@ -39,13 +46,11 @@ def startListener(text, controller):
     print(text)
     controller.show_frame(Confirmation)
     print(PRESET.get())
-    ConfigWriter.PRESET = PRESET.get()
+    PRESET1 = PRESET.get()
     print(BORE_SIZE.get())
-    ConfigWriter.BORE_SIZE = BORE_SIZE.get()
+    BORE_SIZE1 = BORE_SIZE.get()
     print(SLEEVE_LENGTH.get())
-    ConfigWriter.SLEEVE_LENGTH = SLEEVE_LENGTH.get()
     print(CYCLE_ENTRY.get())
-    ConfigWriter.NUM_CYCLES = CYCLE_ENTRY.get()
 
 
 class ConfigPage(tk.Frame):
@@ -115,7 +120,7 @@ class ConfigPage(tk.Frame):
 
         SLEEVE_OPTIONS = [
             "3-7/8",
-            "4", # rep part
+            "4",  # rep part
             "4-7/8",
             "5",
             "7",
@@ -162,6 +167,11 @@ class ConfigPage(tk.Frame):
                           command=lambda: startListener("test", controller))
         start.pack()
 
+def confirmListener(controller):
+    TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
+    controller.show_frame(TimeRemaining)
+    configWrite = ConfigWriter()
+    configWrite.ConfigWriteMain(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY)
 
 class Confirmation(tk.Frame):
     def __init__(self, parent, controller):
@@ -170,9 +180,8 @@ class Confirmation(tk.Frame):
                                     "secured in \n housing with door closed.", fg="Dark Blue", font="Times 24")
         label.pack(pady=10, padx=10)
 
-
         confirm = tk.Button(self, text="Confirm",
-                            command=lambda: ConfigWriter.ConfigWriteMain())#controller.show_frame(TimeRemaining))
+                            command=lambda: confirmListener(controller))
         confirm.pack()
 
 
@@ -182,7 +191,7 @@ class TimeRemaining(tk.Frame):
         self.label = tk.Label(self, text="", width=10)
         self.label.pack()
         self.remaining = 0
-        self.countdown(75)	# Pass in a time for the countdown function.
+        # self.countdown(75)	 # Pass in a time for the countdown function.
 
     def countdown(self, remaining = None):
         if remaining is not None:

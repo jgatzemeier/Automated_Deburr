@@ -1,61 +1,94 @@
 import json
-import main
-import config
-
-BORE_SIZE = 0.0
-SLEEVE_LENGTH = 0.0
-NUM_CYCLES = 0
-PRESET = ''
+from config import Config
 
 
-def writeJSON():
-    print(BORE_SIZE)
-    print(SLEEVE_LENGTH)
-    print(NUM_CYCLES)
+class ConfigWriter:
 
-    data = {
-        'boreSize': BORE_SIZE,
-        'sleeveLength': SLEEVE_LENGTH,
-        'numCycles': NUM_CYCLES
-    }
+    preset = ''
+    boreSize = 0.0
+    sleeveLength = 0.0
+    numCycles = 0
 
-    with open('../current.json', 'w') as outfile:
-        json.dump(data, outfile, indent=4)
-
-
-def readJSON(filename):
-    with open(filename) as json_file:
-        data = json.load(json_file)
-        for key, value in data.items():
-            print(key, value)  # remove for production
-            if key == 'boreSize':
-                BORE_SIZE = value
-            if key == 'sleeveLength':
-                SLEEVE_LENGTH = value
-            if key == 'numCycles':
-                NUM_CYCLES = value
-
-        print('boreSize = ', BORE_SIZE)  # remove for production
-        print('sleeveLength = ', SLEEVE_LENGTH)
-        print('numCycles = ', NUM_CYCLES)
-
-
-def readPreset():
-    if PRESET == '':
+    def __init__(self):
         return
-    else:
-        filename = '../preset/' + PRESET
-        readJSON(filename)
+
+    def writeJSON(self):
+        print(type(self).boreSize)
+        print(type(self).sleeveLength)
+        print(type(self).numCycles)
+
+        data = {
+            'boreSize': type(self).boreSize,
+            'sleeveLength': type(self).sleeveLength,
+            'numCycles': type(self).numCycles
+        }
+
+        with open('current.json', 'w') as outfile:
+            json.dump(data, outfile, indent=4)
 
 
-def ConfigWriteMain():
-    readPreset()
-    writeJSON()
-    config.Config.configMain()
+    def readJSON(self, filename):
+        with open(filename) as json_file:
+            data = json.load(json_file)
+            for key, value in data.items():
+                print(key, value)  # remove for production
+                if key == 'boreSize':
+                    type(self).boreSize = value
+                if key == 'sleeveLength':
+                    type(self).sleeveLength = value
+                if key == 'numCycles':
+                    type(self).numCycles = value
+
+            print('boreSize = ', type(self).boreSize)  # remove for production
+            print('sleeveLength = ', type(self).sleeveLength)
+            print('numCycles = ', type(self).numCycles)
 
 
+    def readPreset(self):
+        if type(self).preset == "Preset":
+            return
+        else:
+            filename = 'preset/' + type(self).preset
+            type(self).readJSON(self, filename)
 
-readJSON('current.json')
-app = main.top()
-readPreset()
+
+    def ConfigWriteMain(self, preset, boreSize, sleeveLength, numCycles):
+        type(self).preset = str(preset.get())
+        if boreSize.get() == 'Bore Size':
+            type(self).boreSize = 0.0
+        else:
+            type(self).boreSize = float(boreSize.get())
+
+        if sleeveLength == "Sleeve Length":
+            type(self).sleeveLength = 0.000
+        elif sleeveLength == "3-7/8":
+            type(self).sleeveLength = 3.875
+        elif sleeveLength == "4":
+            type(self).sleeveLength = 4.000
+        elif sleeveLength == "4-7/8":
+            type(self).sleeveLength = 4.875
+        elif sleeveLength == "5":
+            type(self).sleeveLength = 5.000
+        elif sleeveLength == "7":
+            type(self).sleeveLength = 7.000
+        elif sleeveLength == "9":
+            type(self).sleeveLength = 9.000
+        elif sleeveLength == "10-3/4":
+            type(self).sleeveLength = 10.750
+        elif sleeveLength == "11-3/4":
+            type(self).sleeveLength = 11.750
+
+        if numCycles.get() == '':
+            type(self).numCycles = 0
+        else:
+            type(self).numCycles = int(numCycles.get())
+        type(self).readPreset(self)
+        type(self).writeJSON(self)
+        config = Config()
+        config.configMain()
+
+#
+# yeah = ConfigWriter()
+# yeah.readJSON('current.json')
+# yeah.readPreset()
 
