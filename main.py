@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+#!/usr/bin/env python3
 import tkinter as tk
 from ConfigWriter import ConfigWriter
 import threading
