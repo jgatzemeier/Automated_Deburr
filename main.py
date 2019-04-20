@@ -24,7 +24,7 @@ class top(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         # Adds page to application
         self.frames = {}
-        for F in (ConfigPage, Confirmation, Error):
+        for F in (ConfigPage, Confirmation):
             frame = F(container, self)
 
             self.frames[F] = frame
@@ -199,17 +199,13 @@ class ConfigPage(tk.Frame):
 
 def confirmListener(controller):
 
-    if CYCLE_ENTRY.get() == '' and PRESET.get() == 'Preset':
-        controller.show_frame(Error)
-    else:
-        TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
-        configWrite = ConfigWriter()
-        x = threading.Thread(target=configWrite.ConfigWriteMain, args=(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY), daemon=True)
-        print('Thread created')
-        x.start()
-        controller.show_frame(TimeRemaining)
-        print('Thread Started')
-        # x.join()
+    TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
+    configWrite = ConfigWriter()
+    x = threading.Thread(target=configWrite.ConfigWriteMain, args=(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY), daemon=True)
+    print('Thread created')
+    x.start()
+    controller.show_frame(TimeRemaining)
+    print('Thread Started')
 
 
 class Confirmation(tk.Frame):
@@ -224,15 +220,6 @@ class Confirmation(tk.Frame):
         confirm.pack()
 
 
-class Error(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Make sure you input a number of cycles", fg="Dark Blue", font="Times 24")
-        label.pack(pady=10, padx=10)
-
-        confirm = tk.Button(self, text="Okay",
-                            command=lambda: controller.show_frame(ConfigPage))
-        confirm.pack()
 
 
 class TimeRemaining(tk.Frame):
