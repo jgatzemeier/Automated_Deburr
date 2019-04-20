@@ -21,10 +21,10 @@ class TimeControl:
         type(self).actuator = ActuatorControl()
         type(self).motor = MotorControl()
 
-    def CalculateTotalTime(self):
-        print(config.NUM_CYCLES) #remove for production
-        type(self).totalTime = config.NUM_CYCLES * 32 * 60 # total time for the actuators to rest and run
-        type(self).totalRunTime = config.NUM_CYCLES * 8 * 60 #total run time for the actuators
+    # def CalculateTotalTime(self):
+    #     print(config.NUM_CYCLES) #remove for production
+    #     type(self).totalTime = config.NUM_CYCLES * 32 * 60 # total time for the actuators to rest and run
+    #     type(self).totalRunTime = config.NUM_CYCLES * 8 * 60 #total run time for the actuators
 
     def CountdownRun(self):
         type(self).actuator.fullUp()
