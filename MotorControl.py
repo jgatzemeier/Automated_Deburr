@@ -33,7 +33,7 @@ class MotorControl:
         type(self).voltage = 0
 
     def voltageSet(self, voltage):
-        return
+        
             # for x in range(0, 4097, 150):
             #     print(x)
             #     type(self).dac.set_voltage(x)
@@ -41,14 +41,14 @@ class MotorControl:
         # type(self).dac.set_voltage(type(self).voltage)
             # Create a sawtooth wave 16 times
         for i in range(0x10000):
-                # Create our 12-bit number representing relative voltage
+            # Create our 12-bit number representing relative voltage
             voltage = i & 0xfff
 
-                # Shift everything left by 4 bits and separate bytes
+            # Shift everything left by 4 bits and separate bytes
             msg = (voltage & 0xff0) >> 4
             msg = [msg, (msg & 0xf) << 4]
 
-                # Write out I2C command: address, reg_write_dac, msg[0], msg[1]
+             # Write out I2C command: address, reg_write_dac, msg[0], msg[1]
             type(self).bus.write_i2c_block_data(type(self).address, type(self).reg_write_dac, msg)
 
 
