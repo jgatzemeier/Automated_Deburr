@@ -1,5 +1,6 @@
 import tkinter as tk
 from ConfigWriter import ConfigWriter
+import threading
 
 
 import os
@@ -46,9 +47,7 @@ def startListener(text, controller):
     print(text)
     controller.show_frame(Confirmation)
     print(PRESET.get())
-    PRESET1 = PRESET.get()
     print(BORE_SIZE.get())
-    BORE_SIZE1 = BORE_SIZE.get()
     print(SLEEVE_LENGTH.get())
     print(CYCLE_ENTRY.get())
 
@@ -180,15 +179,20 @@ class ConfigPage(tk.Frame):
                           command=lambda: startListener("test", controller))
         start.pack()
 
+
 def confirmListener(controller):
 
     if CYCLE_ENTRY.get() == '' and PRESET.get() == 'Preset':
         controller.show_frame(Error)
     else:
         TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
-        controller.show_frame(TimeRemaining)
         configWrite = ConfigWriter()
-        configWrite.ConfigWriteMain(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY)
+        x = threading.Thread(target=configWrite.ConfigWriteMain, args=(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY))
+        print('Thread created')
+        x.start()
+        controller.show_frame(TimeRemaining)
+        print('Thread Started')
+        x.join()
 
 class Confirmation(tk.Frame):
     def __init__(self, parent, controller):
