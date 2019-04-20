@@ -188,8 +188,11 @@ class Confirmation(tk.Frame):
 class TimeRemaining(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        self.label = tk.Label(self, text="", width=10)
-        self.label.pack()
+        tk.Label(self, text="Time Remaining",
+                            fg="Dark Blue",
+                            font="Times 24 bold").pack()
+        self.label = tk.Label(self, text="")
+        self.label.pack(pady=10, padx=10)
         self.remaining = 0
         # self.countdown(75)	 # Pass in a time for the countdown function.
 
@@ -198,24 +201,33 @@ class TimeRemaining(tk.Frame):
             self.remaining = remaining
 
         if self.remaining <= 0:
-            self.label.configure(text="Timer is up!")
+            self.label.configure(text="Deburr completed")
         else:
-            self.label.configure(text="%d" % self.remaining)
+            x = formatTime(self.remaining)
+            self.label.configure(text=x,
+                                 fg="Dark Blue",
+                                 font="Times 16")
             self.remaining = self.remaining - 1
             self.after(1000, self.countdown)
 
     # Id you wish for this format: mm:ss (i.e. 12:45), utilize this function
     # below as a helper function for countdown()...
 
-    '''
-    def formatTime(x):
+
+def formatTime(x):
     minutes = int(x / 60)
+    hours = int(minutes / 60)
+    minutes = int(minutes % 60)
     seconds_rem = int(x % 60)
-    if (seconds_rem < 10):
-        return(str(minutes) + ":0" + str(seconds_rem))
+    if seconds_rem < 10 and minutes > 10:
+        return str(hours) + ":" + str(minutes) + ":0" + str(seconds_rem)
+    elif seconds_rem > 10 and minutes < 10:
+        return str(hours) + ":0" + str(minutes) + ":" + str(seconds_rem)
+    elif seconds_rem < 10 and minutes < 10:
+        return str(hours) + ":0" + str(minutes) + ":0" + str(seconds_rem)
     else:
-        return(str(minutes) + ":" + str(seconds_rem))
-    '''
+        return str(hours) + ":" + str(minutes) + ":" + str(seconds_rem)
+
 
 
 app = top()
