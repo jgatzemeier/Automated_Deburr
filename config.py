@@ -13,16 +13,15 @@ class Config:
 
 
     def __init__(self):
-        global BORE_SIZE
-        global SLEEVE_LENGTH
-        global NUM_CYCLES
         type(self).boreSize = 0.0
         type(self).sleeveLength = 0.0
         type(self).numCycles = 0.0
 
 
     def readJSON(self):
-
+        global BORE_SIZE
+        global SLEEVE_LENGTH
+        global NUM_CYCLES
         with open('current.json') as json_file:
             data = json.load(json_file)
             for key, value in data.items():
