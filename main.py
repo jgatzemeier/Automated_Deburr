@@ -167,6 +167,8 @@ class ConfigPage(tk.Frame):
             SLEEVE_LENGTH.set("10-3/4")
         elif items[1] == 11.75:
             SLEEVE_LENGTH.set("11-3/4")
+        else:
+            SLEEVE_LENGTH.set("Sleeve Length")
         lengthOptionMenu = tk.OptionMenu(lengthModule, SLEEVE_LENGTH, *SLEEVE_OPTIONS)
         lengthOptionMenu.pack(side=tk.LEFT)
 
