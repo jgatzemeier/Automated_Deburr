@@ -20,7 +20,7 @@ class ActuatorControl:
     GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 cold
 
     def __init__(self):
-        type(self).strokeLength = config.SLEEVE_LENGTH
+        #type(self).strokeLength = config.SLEEVE_LENGTH
         type(self).strokeTime = 6.5
 
 
