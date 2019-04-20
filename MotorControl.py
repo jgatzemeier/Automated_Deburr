@@ -71,8 +71,8 @@ class MotorControl:
         type(self).voltageSet(self, 0)
 
 
-# motor = MotorControl()
-# motor.forward()
+motor = MotorControl()
+motor.forward()
 # time.sleep(1)
 # motor.reverse()
 # time.sleep(1)
