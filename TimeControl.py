@@ -61,7 +61,7 @@ class TimeControl:
                 type(self).forward = True
 
     def timeMain(self):
-        type(self).CalculateTotalTime(self)
+        # type(self).CalculateTotalTime(self)
 
         cycles = config.NUM_CYCLES
         while cycles > 0:
