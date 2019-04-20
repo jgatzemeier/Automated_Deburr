@@ -2,8 +2,7 @@ import time
 
 import RPi.GPIO as GPIO
 
-
-import config
+#import config
 
 
 class ActuatorControl:
@@ -21,33 +20,9 @@ class ActuatorControl:
     GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 cold
 
     def __init__(self):
-        type(self).strokeLength = 0
+        type(self).strokeLength = config.SLEEVE_LENGTH
         type(self).strokeTime = 6.5
 
-    def calculateStrokeLength(self):
-        sleeve = config.Config.sleeveLength
-        plateHeight = 1
-        strokeLength = 0
-        if sleeve == 3.875:
-            strokeLength = 3.875
-        elif sleeve == 4:
-            strokeLength = 4
-        elif sleeve == 4.875:
-            strokeLength = 4.875
-        elif sleeve == 5.000:
-            strokeLength = 5.000
-        elif sleeve == 7.000:
-            strokeLength = 7.000
-        elif sleeve == 9.000:
-            strokeLength = 9.000
-        elif sleeve == 10.750:
-            strokeLength = 10.750
-        elif sleeve == 11.750:
-            strokeLength = 11.750
-        else:
-            strokeLength = 0
-
-        type(self).strokeLength = strokeLength
 
     def calculateStrokeTime(self):
         type(self).strokeTime = type(self).strokeLength * type(self).speed
@@ -107,6 +82,6 @@ class ActuatorControl:
 
 
 act = ActuatorControl()
-# act.calculateStrokeLength()
-# act.calculateStrokeTime()
+# # act.calculateStrokeLength()
+# # act.calculateStrokeTime()
 act.Actuation()
