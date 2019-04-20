@@ -39,7 +39,7 @@ class MotorControl:
             #     type(self).dac.set_voltage(x)
             #     time.sleep(2)
         # type(self).dac.set_voltage(type(self).voltage)
-            Create a sawtooth wave 16 times
+            # Create a sawtooth wave 16 times
             for i in range(0x10000):
                 # Create our 12-bit number representing relative voltage
                 voltage = i & 0xfff
