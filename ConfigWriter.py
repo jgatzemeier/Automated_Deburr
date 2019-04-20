@@ -1,5 +1,5 @@
 import json
-#from config import Config
+from config import Config
 
 
 class ConfigWriter:
@@ -86,8 +86,8 @@ class ConfigWriter:
             type(self).numCycles = int(numCycles.get())
         type(self).readPreset(self)
         type(self).writeJSON(self)
-        # config = Config()
-        # config.configMain()
+        config = Config()
+        config.configMain()
 
 #
 # yeah = ConfigWriter()

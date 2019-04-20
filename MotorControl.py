@@ -32,7 +32,7 @@ class MotorControl:
         type(self).rpm = 0
         type(self).voltage = 0
 
-    def voltageSet(self):
+    def voltageSet(self, voltage):
         return
             # for x in range(0, 4097, 150):
             #     print(x)
@@ -53,25 +53,28 @@ class MotorControl:
 
 
     def calculateVoltage(self):
-        bore = config.Config.boreSize
+        bore = config.BORE_SIZE
         # this will be a list of conditionals of each bore size with the RPM we determine in testing
         print(bore)
 
     def forward(self):
         GPIO.output(17, GPIO.HIGH)
         while True:
-            type(self).voltageSet(self)
+            type(self).voltageSet(self, 100)
 
     def reverse(self):
         GPIO.output(17, GPIO.LOW)
         while True:
-            type(self).voltageSet(self)
+            type(self).voltageSet(self, 100)
+
+    def Off(self):
+        type(self).voltageSet(self, 0)
 
 
-motor = MotorControl()
-motor.forward()
-time.sleep(1)
-motor.reverse()
-time.sleep(1)
+# motor = MotorControl()
+# motor.forward()
+# time.sleep(1)
+# motor.reverse()
+# time.sleep(1)
 
 
