@@ -22,7 +22,7 @@ class top(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         # Adds page to application
         self.frames = {}
-        for F in (ConfigPage, Confirmation):# TimeRemaining):
+        for F in (ConfigPage, Confirmation, Error):
             frame = F(container, self)
 
             self.frames[F] = frame
@@ -61,6 +61,10 @@ class ConfigPage(tk.Frame):
                  fg="Dark Blue",
                  font="Times 24 bold").pack()
 
+        # Reading the current Config
+        config = ConfigWriter()
+        items = config.readJSON('current.json')
+
         ################################################################
         # Preset menu
         ################################################################
@@ -93,6 +97,7 @@ class ConfigPage(tk.Frame):
         ################################################################
 
         BORE_OPTIONS = [
+            "Bore Size",
             "0.500",
             "0.750",
             "1.375",
@@ -110,7 +115,10 @@ class ConfigPage(tk.Frame):
 
         global BORE_SIZE
         BORE_SIZE = tk.StringVar(boreModule)
-        BORE_SIZE.set("Bore Size")
+        if items[0] == 0.0:
+            BORE_SIZE.set("Bore Size")
+        else:
+            BORE_SIZE.set(items[0])  # The bore size from the last run
         boreOptionMenu = tk.OptionMenu(boreModule, BORE_SIZE, *BORE_OPTIONS)
         boreOptionMenu.pack(side=tk.LEFT)
 
@@ -119,6 +127,7 @@ class ConfigPage(tk.Frame):
         ################################################################
 
         SLEEVE_OPTIONS = [
+            "Sleeve Length",
             "3-7/8",
             "4",  # rep part
             "4-7/8",
@@ -140,7 +149,10 @@ class ConfigPage(tk.Frame):
 
         global SLEEVE_LENGTH
         SLEEVE_LENGTH = tk.StringVar(lengthModule)
-        SLEEVE_LENGTH.set("Sleeve Length")
+        if items[1] == 0.0:
+            SLEEVE_LENGTH.set("Sleeve Length")
+        else:
+            SLEEVE_LENGTH.set(items[1])  # The sleeve length from the last run
         lengthOptionMenu = tk.OptionMenu(lengthModule, SLEEVE_LENGTH, *SLEEVE_OPTIONS)
         lengthOptionMenu.pack(side=tk.LEFT)
 
@@ -158,7 +170,8 @@ class ConfigPage(tk.Frame):
         cycle.pack(side=tk.LEFT)
 
         global CYCLE_ENTRY
-        CYCLE_ENTRY = tk.Entry(cycleModule)
+        v = tk.StringVar(cycleModule, value=items[2])
+        CYCLE_ENTRY = tk.Entry(cycleModule, textvariable=v)
         CYCLE_ENTRY.pack(side=tk.LEFT)
 
         # start button
@@ -168,10 +181,14 @@ class ConfigPage(tk.Frame):
         start.pack()
 
 def confirmListener(controller):
-    TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
-    controller.show_frame(TimeRemaining)
-    configWrite = ConfigWriter()
-    configWrite.ConfigWriteMain(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY)
+
+    if CYCLE_ENTRY.get() == '' and PRESET.get() == 'Preset':
+        controller.show_frame(Error)
+    else:
+        TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
+        controller.show_frame(TimeRemaining)
+        configWrite = ConfigWriter()
+        configWrite.ConfigWriteMain(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY)
 
 class Confirmation(tk.Frame):
     def __init__(self, parent, controller):
@@ -182,6 +199,16 @@ class Confirmation(tk.Frame):
 
         confirm = tk.Button(self, text="Confirm",
                             command=lambda: confirmListener(controller))
+        confirm.pack()
+
+class Error(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Make sure you input a number of cycles", fg="Dark Blue", font="Times 24")
+        label.pack(pady=10, padx=10)
+
+        confirm = tk.Button(self, text="Okay",
+                            command=lambda: controller.show_frame(ConfigPage))
         confirm.pack()
 
 
