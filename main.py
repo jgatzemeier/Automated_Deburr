@@ -192,7 +192,8 @@ def confirmListener(controller):
         x.start()
         controller.show_frame(TimeRemaining)
         print('Thread Started')
-        x.join()
+        # x.join()
+
 
 class Confirmation(tk.Frame):
     def __init__(self, parent, controller):
@@ -204,6 +205,7 @@ class Confirmation(tk.Frame):
         confirm = tk.Button(self, text="Confirm",
                             command=lambda: confirmListener(controller))
         confirm.pack()
+
 
 class Error(tk.Frame):
     def __init__(self, parent, controller):
