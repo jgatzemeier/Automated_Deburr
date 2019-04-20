@@ -201,7 +201,8 @@ def confirmListener(controller):
 
     TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
     configWrite = ConfigWriter()
-    x = threading.Thread(target=configWrite.ConfigWriteMain, args=(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY), daemon=True)
+    x = threading.Thread(target=configWrite.ConfigWriteMain,
+                         args=(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY), daemon=True)
     print('Thread created')
     x.start()
     controller.show_frame(TimeRemaining)
