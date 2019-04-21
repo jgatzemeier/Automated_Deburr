@@ -71,8 +71,9 @@ class ActuatorControl:
         # time.sleep((type(self).strokeTime / 4))
 
     def Actuation(self):
-        type(self).goDown(self)
-        type(self).goUp(self)
+        while True:
+            type(self).goDown(self)
+            type(self).goUp(self)
 
     def fullUp(self):
         GPIO.output(24, GPIO.LOW)  # actuator 1
@@ -98,7 +99,8 @@ class ActuatorControl:
         GPIO.output(22, GPIO.LOW)  # actuator 2
 
 
-# act = ActuatorControl()
-# # act.calculateStrokeLength()
-# # act.calculateStrokeTime()
-# act.Actuation()
+act = ActuatorControl()
+# act.calculateStrokeLength()
+# act.calculateStrokeTime()
+act.fullUp()
+act.Actuation()
