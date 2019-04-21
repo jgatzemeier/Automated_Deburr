@@ -21,7 +21,7 @@ class ActuatorControl:
 
     def __init__(self):
         self.strokeLength = config.SLEEVE_LENGTH
-        self.strokeTime = 6.5
+        self.strokeTime = 8.5
         self.fullStroke = 23
         type(self).Off(self)
 
