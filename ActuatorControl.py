@@ -48,10 +48,11 @@ class ActuatorControl:
         # time.sleep((type(self).strokeTime / 2)-.5)
 
     def goDown(self):
-        GPIO.output(23, GPIO.LOW)  # actuator 1
-        GPIO.output(24, GPIO.HIGH)  # actuator 1
-        GPIO.output(22, GPIO.HIGH)  # actuator 2
         GPIO.output(27, GPIO.LOW)  # actuator 2
+        GPIO.output(22, GPIO.HIGH)  # actuator 2
+        GPIO.output(24, GPIO.HIGH)  # actuator 1
+        GPIO.output(23, GPIO.LOW)  # actuator 1
+
 
         time.sleep(self.strokeTime - 1)
         type(self).Off(self)
@@ -76,18 +77,21 @@ class ActuatorControl:
             type(self).goUp(self)
 
     def fullUp(self):
-        GPIO.output(24, GPIO.LOW)  # actuator 1
-        GPIO.output(23, GPIO.HIGH)  # actuator 1
-        GPIO.output(27, GPIO.HIGH)  # actuator 2
         GPIO.output(22, GPIO.LOW)  # actuator 2
+        GPIO.output(27, GPIO.HIGH)  # actuator 2
+        GPIO.output(23, GPIO.HIGH)  # actuator 1
+        GPIO.output(24, GPIO.LOW)  # actuator 1
+
         time.sleep(self.fullStroke)
         type(self).Off(self)
 
     def fullDown(self):
-        GPIO.output(23, GPIO.LOW)  # actuator 1
-        GPIO.output(24, GPIO.HIGH)  # actuator 1
-        GPIO.output(22, GPIO.HIGH)  # actuator 2
+
         GPIO.output(27, GPIO.LOW)  # actuator 2
+        GPIO.output(22, GPIO.HIGH)  # actuator 2
+        GPIO.output(24, GPIO.HIGH)  # actuator 1
+        GPIO.output(23, GPIO.LOW)  # actuator 1
+
         time.sleep(self.fullStroke)
         type(self).Off(self)
 
