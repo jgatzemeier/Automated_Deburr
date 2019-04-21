@@ -2,16 +2,16 @@ import config
 import RPi.GPIO as GPIO
 import time
 
-import Adafruit_MCP4725 as mcp
+# import Adafruit_MCP4725 as mcp
 # import smbus
-
+#import quick2wire.i2c as i2c
 
 class MotorControl:
 
     GPIO.setmode(GPIO.BCM)
     voltage = 0
 
-    dac = mcp.MCP4725(address=0x61)
+    # dac = mcp.MCP4725(address=0x61)
 
 
     # # I2C channel 1 is connected to the GPIO pins
@@ -26,6 +26,7 @@ class MotorControl:
     # # # Initialize I2C (SMBus)
     # bus = smbus.SMBus(1)
 
+
     GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW) # pin for SPDT switch
 
     def __init__(self):
@@ -33,11 +34,12 @@ class MotorControl:
         type(self).voltage = 0
 
     def voltageSet(self, voltage):
+        return
 
-            for x in range(0, 4097, 150):
-                print(x)
-                type(self).dac.set_voltage(x)
-                time.sleep(2)
+            # for x in range(0, 4097, 150):
+            #     print(x)
+            #     type(self).dac.set_voltage(x)
+            #     time.sleep(2)
 
             # Create a sawtooth wave 16 times
         # for i in range(0x10000):
