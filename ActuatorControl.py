@@ -103,8 +103,8 @@ class ActuatorControl:
         GPIO.output(22, GPIO.LOW)  # actuator 2
 
 #
-# act = ActuatorControl()
+act = ActuatorControl()
 # # act.calculateStrokeLength()
 # # act.calculateStrokeTime()
-# act.fullUp()
+act.fullDown()
 # act.Actuation()
