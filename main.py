@@ -199,7 +199,7 @@ class ConfigPage(tk.Frame):
 
 def confirmListener(controller):
 
-    TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 32 * 60)  # calculates the total run time
+    TIME_REMAINING_PAGE.countdown(int(CYCLE_ENTRY.get()) * 16 * 60)  # calculates the total run time
     configWrite = ConfigWriter()
     x = threading.Thread(target=configWrite.ConfigWriteMain,
                          args=(PRESET, BORE_SIZE, SLEEVE_LENGTH, CYCLE_ENTRY), daemon=True)

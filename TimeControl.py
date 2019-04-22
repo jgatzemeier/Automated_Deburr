@@ -43,7 +43,7 @@ class TimeControl:
         type(self).actuator.fullDown()
         t = t - type(self).actuator.getFullStroke()
         if t == 0:
-            type(self).timeRemaining = type(self).timeRemaining - (8 * 60)
+            type(self).timeRemaining = type(self).timeRemaining - (4 * 60)
             type(self).actuator.Off()
             type(self).motor.Off()
 
@@ -54,7 +54,7 @@ class TimeControl:
             t = t - 1
             time.sleep(1)
         if t == 0:
-            type(self).timeRemaining = type(self).timeRemaining - (24 * 60)
+            type(self).timeRemaining = type(self).timeRemaining - (12 * 60)
             if type(self).forward:
                 type(self).forward = False
             else:
