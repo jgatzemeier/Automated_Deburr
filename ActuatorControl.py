@@ -72,9 +72,8 @@ class ActuatorControl:
         # time.sleep((type(self).strokeTime / 4))
 
     def Actuation(self):
-        while True:
-            type(self).goDown(self)
-            type(self).goUp(self)
+        type(self).goDown(self)
+        type(self).goUp(self)
 
     def fullUp(self):
         GPIO.output(22, GPIO.LOW)  # actuator 2
