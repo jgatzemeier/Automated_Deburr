@@ -75,10 +75,12 @@ class MotorControl:
         #type(self).voltageSet(self, 0)
 
 #
+
 motor = MotorControl()
-motor.forward()
-time.sleep(10)
-motor.reverse()
-time.sleep(10)
+while True:
+    motor.forward()
+    time.sleep(10)
+    motor.reverse()
+    time.sleep(10)
 
 
