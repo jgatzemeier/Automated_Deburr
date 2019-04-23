@@ -61,13 +61,13 @@ class MotorControl:
 
     def forward(self):
         GPIO.output(17, GPIO.HIGH)
-        while True:
-            type(self).voltageSet(self, 100)
+        #while True:
+            #type(self).voltageSet(self, 100)
 
     def reverse(self):
         GPIO.output(17, GPIO.LOW)
-        while True:
-            type(self).voltageSet(self, 100)
+        #while True:
+          #  type(self).voltageSet(self, 100)
 
     def Off(self):
         type(self).voltageSet(self, 0)

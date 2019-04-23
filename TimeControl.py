@@ -5,13 +5,14 @@ import config
 
 #####################################################################################
 #####################################################################################
+#
 #   This file will need to be updated as follows when new actuators are purchased.
 #
 #   The function "Countdown Rest" will be obsolete. It can be commented out.
 #   The line that calls that function in timeMain will also need to be commented out.
-#   In the function "Countdown Run" you will see duplicate lines with different
-#   constant values. Comment the current one out and uncomment the other one.
-#   1 cycle will now be defined as 16 minutes of run time.
+#   In the function "Countdown Run" you will see more comments on how to edit that
+#   function. 1 cycle will now be defined as 16 minutes of run time.
+#
 ######################################################################################
 ######################################################################################
 
@@ -39,9 +40,10 @@ class TimeControl:
 
     def CountdownRun(self):
         type(self).actuator.fullUp()
-        t = 4 * 60 - type(self).actuator.getFullStroke()
+        t = 4 * 60 - type(self).actuator.getFullStroke()  # comment this out and uncomment the following line
+        # t = 16 * 60 - type(self).actuator.getFullStroke()
 
-        while t > type(self).actuator.getFullStroke():
+        while t > type(self).actuator.getFullStroke():  # This whole loop will be commented out and replaced by below
             if t < (type(self).actuator.getFullStroke() + type(self).actuator.getStrokeTime()):  # Double checks that we will not surpass the duty cycle of the actuator
                 break
             t = t - (type(self).actuator.getStrokeTime() * 2)
@@ -51,12 +53,25 @@ class TimeControl:
             else:
                 type(self).motor.reverse()
 
-        type(self).actuator.fullDown()
-        t = t - type(self).actuator.getFullStroke()
+        type(self).actuator.fullDown()  # This line can be commented out and MOVED to the bottom of timeMain
+        t = t - type(self).actuator.getFullStroke()  # This line is can be commented out
         if t == 0:
             type(self).timeRemaining = type(self).timeRemaining - (4 * 60)
             type(self).actuator.Off()
             type(self).motor.Off()
+        # while t > 0:
+        #     # type(self).actuator.Actuation()  # This replaces the above while loop
+            # if type(self).forward:
+            #     type(self).motor.forward()
+            # else:
+            #     type(self).motor.reverse()
+
+            # type(self).actuator.fullDown()  # This line can be commented out and MOVED to the bottom of timeMain
+            # t = t - type(self).actuator.getFullStroke()  # This line is can be commented out
+            # if t == 0:
+            #     type(self).timeRemaining = type(self).timeRemaining - (4 * 60)
+            #     type(self).actuator.Off()
+            #     type(self).motor.Off()
 
 
     def CountdownRest(self):
@@ -79,6 +94,7 @@ class TimeControl:
             type(self).CountdownRun(self)
             type(self).CountdownRest(self)
             cycles = cycles - 1
+        # type(self).actuator.fullDown()  # Uncomment this when you upgrade actuators
 
 
 
