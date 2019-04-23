@@ -1,4 +1,4 @@
-import config
+#import config
 import RPi.GPIO as GPIO
 import time
 
@@ -55,9 +55,10 @@ class MotorControl:
 
 
     def calculateVoltage(self):
-        bore = config.BORE_SIZE
+        return
+        # bore = config.BORE_SIZE
         # this will be a list of conditionals of each bore size with the RPM we determine in testing
-        print(bore)
+        #print(bore)
 
     def forward(self):
         GPIO.output(17, GPIO.HIGH)
@@ -70,13 +71,14 @@ class MotorControl:
           #  type(self).voltageSet(self, 100)
 
     def Off(self):
-        type(self).voltageSet(self, 0)
+        #type(self).voltageSet(self, 0)
 
 #
-# motor = MotorControl()
-# motor.forward()
-# time.sleep(1)
-# motor.reverse()
-# time.sleep(1)
+
+motor = MotorControl()
+motor.forward()
+time.sleep(10)
+motor.reverse()
+time.sleep(10)
 
 
