@@ -3,6 +3,17 @@ from ActuatorControl import ActuatorControl
 import time
 import config
 
+#####################################################################################
+#####################################################################################
+#   This file will need to be updated as follows when new actuators are purchased.
+#
+#   The function "Countdown Rest" will be obsolete. It can be commented out.
+#   The line that calls that function in timeMain will also need to be commented out.
+#   In the function "Countdown Run" you will see duplicate lines with different
+#   constant values. Comment the current one out and uncomment the other one.
+#   1 cycle will now be defined as 16 minutes of run time.
+######################################################################################
+######################################################################################
 
 
 class TimeControl:
