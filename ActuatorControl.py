@@ -9,7 +9,7 @@ class ActuatorControl:
 
     strokeLength = 0
     strokeTime = 0
-    speed = .3
+    speed = .6
     '''
         NOTE: Pin layout can be found at pinout.xyz
     '''
