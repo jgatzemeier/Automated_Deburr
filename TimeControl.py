@@ -28,7 +28,7 @@ class TimeControl:
 
     def CountdownRun(self):
         type(self).actuator.fullUp()
-        t = 8 * 60 - type(self).actuator.getFullStroke()
+        t = 4 * 60 - type(self).actuator.getFullStroke()
 
         while t > type(self).actuator.getFullStroke():
             if t < (type(self).actuator.getFullStroke() + type(self).actuator.getStrokeTime()):  # Double checks that we will not surpass the duty cycle of the actuator
@@ -49,7 +49,7 @@ class TimeControl:
 
 
     def CountdownRest(self):
-        t = 24 * 60
+        t = 12 * 60
         while t > 0:
             t = t - 1
             time.sleep(1)
