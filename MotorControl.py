@@ -66,7 +66,8 @@ class MotorControl:
             #type(self).voltageSet(self, 100)
 
     def reverse(self):
-        GPIO.output(17, GPIO.HIGH)
+        #GPIO.output(17, GPIO.HIGH)
+        return
         #while True:
           #  type(self).voltageSet(self, 100)
 
