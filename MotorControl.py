@@ -71,10 +71,10 @@ class MotorControl:
           #  type(self).voltageSet(self, 100)
 
     def Off(self):
+        return
         #type(self).voltageSet(self, 0)
 
 #
-
 motor = MotorControl()
 motor.forward()
 time.sleep(10)
