@@ -32,7 +32,7 @@ class ActuatorControl:
         return self.fullStroke
 
     def calculateStrokeTime(self):
-        self.strokeTime = self.strokeLength * type(self).speed + 1
+        self.strokeTime = self.strokeLength / type(self).speed + 1
         return
 
     def goUp(self):
