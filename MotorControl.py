@@ -21,10 +21,7 @@ class MotorControl:
 
     def voltageSet(self, voltage):
 
-        for x in range(0, 4097, 150):
-            print(x)
-            type(self).dac.set_voltage(x)
-            time.sleep(2)
+        type(self).dac.set_voltage(voltage)
 
             # Create a sawtooth wave 16 times
         # for i in range(0x10000):
