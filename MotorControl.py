@@ -4,58 +4,53 @@ import time
 
 import Adafruit_MCP4725 as mcp
 
+#############################################################################
+#############################################################################
+#
+# This file controls the speed and direction of the Motor.
+# The speed is controlled by a 12-bit Digital to Analog converter.
+# This DAC is controlled by sending it a raw value.
+# The function to calculate the output voltage is:
+#         Vout = Vref * Dn/4096
+# where Vref is 5V and Dn is the value you input
+# For example: 2.5 V = 5 * 2048/4096
+# Dn can be changed by sending the function voltageSet a different value.
+# This function is called in Forward and Reverse.
+#
+#############################################################################
+#############################################################################
+
 
 class MotorControl:
 
     GPIO.setmode(GPIO.BCM)
-    voltage = 0
-
+    GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW)  # pin for SPDT switch
     dac = mcp.MCP4725(address=0x60)
 
-
-    GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW) # pin for SPDT switch
-
     def __init__(self):
-        type(self).rpm = 0
-        type(self).voltage = 0
+        self.voltage = 0
 
     def voltageSet(self, voltage):
-
         type(self).dac.set_voltage(voltage)
-
-            # Create a sawtooth wave 16 times
-        # for i in range(0x10000):
-        #     # Create our 12-bit number representing relative voltage
-        #     voltage = i & 0xfff
-        #
-        #     # Shift everything left by 4 bits and separate bytes
-        #     msg = (voltage & 0xff0) >> 4
-        #     msg = [msg, (msg & 0xf) << 4]
-        #
-        #      # Write out I2C command: address, reg_write_dac, msg[0], msg[1]
-        #     type(self).bus.write_i2c_block_data(type(self).address, type(self).reg_write_dac, msg)
-
 
     def calculateVoltage(self):
         return
         # bore = config.BORE_SIZE
         # this will be a list of conditionals of each bore size with the RPM we determine in testing
-        #print(bore)
 
     def forward(self):
         GPIO.output(17, GPIO.LOW)
         type(self).voltageSet(self, 2048)
 
     def reverse(self):
-        #GPIO.output(17, GPIO.HIGH)
         return
-        #while True:
-          #  type(self).voltageSet(self, 100)
+        # GPIO.output(17, GPIO.HIGH)  # If you ever can go reverse with your brushes uncomment this and remove the
+        # type(self).voltageSet(self, 2048)  # return statement
 
     def Off(self):
         type(self).voltageSet(self, 0)
 
-#
+
 
 motor = MotorControl()
 while True:
