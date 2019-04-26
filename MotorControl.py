@@ -47,8 +47,7 @@ class MotorControl:
 
     def forward(self):
         GPIO.output(17, GPIO.LOW)
-        #while True:
-            #type(self).voltageSet(self, 100)
+        type(self).voltageSet(self, 100)
 
     def reverse(self):
         #GPIO.output(17, GPIO.HIGH)
