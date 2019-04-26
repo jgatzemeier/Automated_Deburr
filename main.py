@@ -3,6 +3,15 @@ import tkinter as tk
 from ConfigWriter import ConfigWriter
 import threading
 
+########################################################################
+########################################################################
+#
+# This is the main file for the entire system. It defines the user
+# interface and sends signals to the other modules to start working.
+#
+########################################################################
+########################################################################
+
 
 import os
 

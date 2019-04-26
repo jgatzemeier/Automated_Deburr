@@ -6,6 +6,9 @@ import config
 #####################################################################################
 #####################################################################################
 #
+#   This file controls the time that the actuators and motor are running.
+#   It is responsible for sending signal to the Motor and Actuator to do something.
+#   
 #   This file will need to be updated as follows when new actuators are purchased.
 #
 #   The function "Countdown Rest" will be obsolete. It can be commented out.

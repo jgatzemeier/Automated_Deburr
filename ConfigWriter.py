@@ -1,6 +1,15 @@
 import json
 from config import Config
 
+########################################################################
+########################################################################
+#
+# This module writes to the current json file to serialize the current
+# run on the user interface. It reads and writes json files.
+#
+########################################################################
+########################################################################
+
 
 class ConfigWriter:
 

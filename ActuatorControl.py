@@ -4,6 +4,18 @@ import RPi.GPIO as GPIO
 
 import config
 
+########################################################################
+########################################################################
+#
+# This file controls the actuators.
+# It controls 4 relays that switch to control the direction of
+# the movement. The speed of the actuators can be adjusted as necessary
+# in the class attributes below. The stroke time is calculated using this
+# and the stroke length.
+#
+########################################################################
+########################################################################
+
 
 class ActuatorControl:
 
@@ -33,7 +45,6 @@ class ActuatorControl:
 
     def calculateStrokeTime(self):
         self.strokeTime = self.strokeLength / type(self).speed + 1
-        return
 
     def goUp(self):
         GPIO.output(22, GPIO.LOW)  # actuator 2
@@ -100,6 +111,7 @@ class ActuatorControl:
         GPIO.output(24, GPIO.LOW)  # actuator 1
         GPIO.output(27, GPIO.LOW)  # actuator 2
         GPIO.output(22, GPIO.LOW)  # actuator 2
+
 #
 # #
 # act = ActuatorControl()
