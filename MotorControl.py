@@ -61,8 +61,8 @@ class MotorControl:
 motor = MotorControl()
 while True:
     motor.forward()
-    time.sleep(10)
+    time.sleep(5)
     motor.Off()
-    time.sleep(10)
+    time.sleep(5)
 
 
