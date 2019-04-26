@@ -53,7 +53,6 @@ class MotorControl:
           #  type(self).voltageSet(self, 100)
 
     def Off(self):
-        return
         type(self).voltageSet(self, 0)
 
 #
