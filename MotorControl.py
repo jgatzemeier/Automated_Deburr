@@ -52,11 +52,11 @@ class MotorControl:
 
 
 
-motor = MotorControl()
-while True:
-    motor.forward()
-    time.sleep(5)
-    motor.Off()
-    time.sleep(5)
+# motor = MotorControl()
+# while True:
+#     motor.forward()
+#     time.sleep(5)
+#     motor.Off()
+#     time.sleep(5)
 
 
