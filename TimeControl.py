@@ -1,4 +1,4 @@
-from MotorControl import MotorControl
+#from MotorControl import MotorControl
 from ActuatorControl import ActuatorControl
 import time
 import config
@@ -34,7 +34,7 @@ class TimeControl:
         type(self).totalRunTime = 0
         type(self).timeRemaining = 0
         type(self).actuator = ActuatorControl()
-        type(self).motor = MotorControl()
+        #type(self).motor = MotorControl()
 
     # def CalculateTotalTime(self):
     #     print(config.NUM_CYCLES) #remove for production
@@ -51,17 +51,17 @@ class TimeControl:
                 break
             t = t - (type(self).actuator.getStrokeTime() * 2)
             type(self).actuator.Actuation()
-            if type(self).forward:
-                type(self).motor.forward()
-            else:
-                type(self).motor.reverse()
+            # if type(self).forward:
+            #     type(self).motor.forward()
+            # else:
+            #     type(self).motor.reverse()
 
         type(self).actuator.fullDown()  # This line can be commented out and MOVED to the bottom of timeMain
         t = t - type(self).actuator.getFullStroke()  # This line is can be commented out
         if t == 0:
             type(self).timeRemaining = type(self).timeRemaining - (4 * 60)
             type(self).actuator.Off()
-            type(self).motor.Off()
+            #type(self).motor.Off()
         # while t > 0:
         #     # type(self).actuator.Actuation()  # This replaces the above while loop
             # if type(self).forward:
@@ -84,10 +84,10 @@ class TimeControl:
             time.sleep(1)
         if t == 0:
             type(self).timeRemaining = type(self).timeRemaining - (12 * 60)
-            if type(self).forward:
-                type(self).forward = False
-            else:
-                type(self).forward = True
+            # if type(self).forward:
+            #     type(self).forward = False
+            # else:
+            #     type(self).forward = True
 
     def timeMain(self):
         # type(self).CalculateTotalTime(self)
