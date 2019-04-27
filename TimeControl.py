@@ -1,5 +1,5 @@
 #from MotorControl import MotorControl
-from ActuatorControl import ActuatorControl
+from Actuator import ActuatorControl
 import time
 import config
 
