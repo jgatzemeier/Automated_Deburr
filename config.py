@@ -1,5 +1,5 @@
 import json
-from TimeControl import TimeControl
+from TimeC import TimeControl
 
 BORE_SIZE = None
 SLEEVE_LENGTH = None
