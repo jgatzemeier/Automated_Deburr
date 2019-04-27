@@ -28,8 +28,8 @@ class ActuatorControl:
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 1 hot
     GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 1 cold
-    GPIO.setup(27, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 hot
-    GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 cold
+    GPIO.setup(6, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 hot
+    GPIO.setup(5, GPIO.OUT, initial=GPIO.LOW)  # pin for actuator 2 cold
 
     def __init__(self):
         self.strokeLength = config.SLEEVE_LENGTH
@@ -47,8 +47,8 @@ class ActuatorControl:
         self.strokeTime = self.strokeLength / type(self).speed + 1
 
     def goUp(self):
-        GPIO.output(22, GPIO.LOW)  # actuator 2
-        GPIO.output(27, GPIO.HIGH)  # actuator 2
+        GPIO.output(6, GPIO.LOW)  # actuator 2
+        GPIO.output(5, GPIO.HIGH)  # actuator 2
         GPIO.output(23, GPIO.HIGH)  # actuator 1
         GPIO.output(24, GPIO.LOW)  # actuator 1
         time.sleep(self.strokeTime)
@@ -59,8 +59,8 @@ class ActuatorControl:
         # time.sleep((type(self).strokeTime / 2)-.5)
 
     def goDown(self):
-        GPIO.output(27, GPIO.LOW)  # actuator 2
-        GPIO.output(22, GPIO.HIGH)  # actuator 2
+        GPIO.output(5, GPIO.LOW)  # actuator 2
+        GPIO.output(6, GPIO.HIGH)  # actuator 2
         GPIO.output(24, GPIO.HIGH)  # actuator 1
         GPIO.output(23, GPIO.LOW)  # actuator 1
 
@@ -87,8 +87,8 @@ class ActuatorControl:
         type(self).goUp(self)
 
     def fullUp(self):
-        GPIO.output(22, GPIO.LOW)  # actuator 2
-        GPIO.output(27, GPIO.HIGH)  # actuator 2
+        GPIO.output(6, GPIO.LOW)  # actuator 2
+        GPIO.output(5, GPIO.HIGH)  # actuator 2
         GPIO.output(23, GPIO.HIGH)  # actuator 1
         GPIO.output(24, GPIO.LOW)  # actuator 1
 
@@ -97,8 +97,8 @@ class ActuatorControl:
 
     def fullDown(self):
 
-        GPIO.output(27, GPIO.LOW)  # actuator 2
-        GPIO.output(22, GPIO.HIGH)  # actuator 2
+        GPIO.output(5, GPIO.LOW)  # actuator 2
+        GPIO.output(6, GPIO.HIGH)  # actuator 2
         GPIO.output(24, GPIO.HIGH)  # actuator 1
         GPIO.output(23, GPIO.LOW)  # actuator 1
 
@@ -109,8 +109,8 @@ class ActuatorControl:
     def Off(self):
         GPIO.output(23, GPIO.LOW)  # actuator 1
         GPIO.output(24, GPIO.LOW)  # actuator 1
-        GPIO.output(27, GPIO.LOW)  # actuator 2
-        GPIO.output(22, GPIO.LOW)  # actuator 2
+        GPIO.output(6, GPIO.LOW)  # actuator 2
+        GPIO.output(5, GPIO.LOW)  # actuator 2
 
 #
 # #
