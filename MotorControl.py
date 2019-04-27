@@ -1,8 +1,8 @@
 #import config
 import RPi.GPIO as GPIO
-import time
+#import time
 
-import Adafruit_MCP4725 as mcp
+#import Adafruit_MCP4725 as mcp
 
 #############################################################################
 #############################################################################
@@ -25,13 +25,14 @@ class MotorControl:
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW)  # pin for SPDT switch
-    dac = mcp.MCP4725(address=0x60)
+    #dac = mcp.MCP4725(address=0x60)
 
     def __init__(self):
         self.voltage = 0
 
     def voltageSet(self, voltage):
-        type(self).dac.set_voltage(voltage)
+        return
+        #type(self).dac.set_voltage(voltage)
 
     def calculateVoltage(self):
         return
@@ -40,7 +41,7 @@ class MotorControl:
 
     def forward(self):
         GPIO.output(17, GPIO.LOW)
-        type(self).voltageSet(self, 2048)
+        #type(self).voltageSet(self, 2048)
 
     def reverse(self):
         return
@@ -48,7 +49,8 @@ class MotorControl:
         # type(self).voltageSet(self, 2048)  # return statement
 
     def Off(self):
-        type(self).voltageSet(self, 0)
+        #type(self).voltageSet(self, 0)
+        return
 
 
 
